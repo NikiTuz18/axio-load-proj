@@ -1,13 +1,13 @@
-package ru.nikituz.axioloadproj;
+package ru.nikituz.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AxioLoadProjApplication {
+public class RestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AxioLoadProjApplication.class, args);
+        SpringApplication.run(RestApplication.class, args);
     }
 
 }

@@ -1,10 +1,10 @@
-package ru.nikituz.axioloadproj;
+package ru.nikituz.rest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AxioLoadProjApplicationTests {
+class RestApplicationTests {
 
     @Test
     void contextLoads() {
