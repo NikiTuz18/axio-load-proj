@@ -14,7 +14,7 @@ import ru.nikituz.rest.dto.PersonDto;
 import ru.nikituz.rest.services.PersonService;
 
 @RestController
-@RequestMapping("/persons")
+@RequestMapping("/rest/persons")
 @RequiredArgsConstructor
 public class PersonController {
 
