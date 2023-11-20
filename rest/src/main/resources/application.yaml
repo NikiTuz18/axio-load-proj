@@ -10,3 +10,6 @@ spring:
         enabled: true
 server:
   port: 8080
+
+soap:
+  uri: http://localhost:9090/soap
