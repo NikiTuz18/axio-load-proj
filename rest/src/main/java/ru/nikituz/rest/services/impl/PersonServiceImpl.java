@@ -1,5 +1,7 @@
 package ru.nikituz.rest.services.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,11 +44,12 @@ public class PersonServiceImpl implements PersonService {
                 errorMessage.append(error.getField())
                         .append(" - ")
                         .append(error.getDefaultMessage())
-                        .append("; ");
+                        .append(";\n");
             }
 
             throw new PersonCreateException(errorMessage.toString());
         }
+
         create(personDto);
         return ResponseEntity.ok(HttpStatus.OK);
     }
@@ -57,5 +60,10 @@ public class PersonServiceImpl implements PersonService {
                 new ErrorPersonResponseTransfer(exception.getMessage()),
                 HttpStatus.BAD_REQUEST
         );
+    }
+
+    private String parseToXml(PersonDto personDto) throws JsonProcessingException {
+        XmlMapper xmlMapper = new XmlMapper();
+        return xmlMapper.writeValueAsString(personDto);
     }
 }
