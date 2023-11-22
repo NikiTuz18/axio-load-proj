@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import ru.nikituz.rest.models.enums.Gender;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 @Entity

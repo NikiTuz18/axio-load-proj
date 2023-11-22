@@ -1,7 +1,7 @@
 package ru.nikituz.soap.endpoint;
 
-import https.nikituz_ru.soap_module.GetConvertedXmlRequest;
-import https.nikituz_ru.soap_module.GetConvertedXmlResponse;
+import https.nikituz_ru.soap.GetConvertedXmlRequest;
+import https.nikituz_ru.soap.GetConvertedXmlResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;

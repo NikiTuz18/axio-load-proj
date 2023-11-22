@@ -20,8 +20,10 @@
         <json.version>20231013</json.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
-        <jackson-dataformat-xml.version>2.16.0</jackson-dataformat-xml.version>
+        <jackson.version>2.16.0</jackson.version>
         <jakarta.xml.bind-api.version>4.0.0</jakarta.xml.bind-api.version>
+        <jaxb2-maven-plugin.version>3.1.0</jaxb2-maven-plugin.version>
+        <jaxws-maven-plugin.version>4.0.1</jaxws-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -88,9 +90,24 @@
             <version>${lombok-mapstruct-binding.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
-            <version>${jackson-dataformat-xml.version}</version>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.ws</groupId>
@@ -105,6 +122,14 @@
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
         </dependency>
 
     </dependencies>
@@ -157,25 +182,21 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.15.3</version>
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>${jaxws-maven-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>xjc</id>
                         <goals>
-                            <goal>xjc</goal>
+                            <goal>wsimport</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>ru.nikituz.wsdl</generatePackage>
-                    <schemas>
-                        <schema>
-                            <url>http://localhost:9090/soap/xmlConverterWsdl.wsdl</url>
-                        </schema>
-                    </schemas>
+                    <wsdlUrls>
+                        <wsdlUrl>http://localhost:9090/soap/xmlConverterWsdl.wsdl</wsdlUrl>
+                    </wsdlUrls>
+                    <packageName>ru.nikituz.wsdl</packageName>
                 </configuration>
             </plugin>
         </plugins>

@@ -2,7 +2,6 @@ package ru.nikituz.rest.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +21,7 @@ public class PersonController {
 
     @PostMapping("/add")
     @ResponseBody
-    public ResponseEntity<HttpStatus> add(@RequestBody @Valid PersonDto personDto, BindingResult bindingResult){
+    public ResponseEntity<String> add(@RequestBody @Valid PersonDto personDto, BindingResult bindingResult){
         return personService.ResponseFromPost(personDto, bindingResult);
     }
 }
