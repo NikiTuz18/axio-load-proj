@@ -30,7 +30,7 @@ public class WebServiceConfiguration extends WsConfigurerAdapter {
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("XmlConverterPort");
-        wsdl11Definition.setLocationUri("/soap");
+        wsdl11Definition.setLocationUri("/soap/convert");
         wsdl11Definition.setTargetNamespace(NAMESPACE_URI);
         wsdl11Definition.setSchema(countriesSchema);
         return wsdl11Definition;
