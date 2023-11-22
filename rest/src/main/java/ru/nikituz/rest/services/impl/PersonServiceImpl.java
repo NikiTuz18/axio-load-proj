@@ -8,12 +8,8 @@ import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import ru.nikituz.rest.client.ConvertedXmlClient;
 import ru.nikituz.rest.dto.PersonDto;
 import ru.nikituz.rest.models.Person;
@@ -25,7 +21,6 @@ import ru.nikituz.wsdl.GetConvertedXmlResponse;
 
 import java.io.StringReader;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -43,29 +38,6 @@ public class PersonServiceImpl implements PersonService {
         personRepository.save(person);
     }
 
-    @Override
-    @Transactional
-    public ResponseEntity<String> responseFromPost(PersonDto personDto, BindingResult bindingResult) throws PersonCreateException {
-        if(bindingResult.hasErrors()){
-            StringBuilder errorMessage = new StringBuilder();
-            List<FieldError> errors = bindingResult.getFieldErrors();
-            for(FieldError error : errors){
-                errorMessage.append(error.getField())
-                        .append(" - ")
-                        .append(error.getDefaultMessage())
-                        .append(";\n");
-            }
-            log.error("Ошибка в корректности данных JSON-модели.");
-            throw new PersonCreateException(errorMessage.toString());
-        }
-
-        create(personDto);
-        log.info("Данные успешно добавлены в БД (json)!");
-        log.info("Обращение к SOAP-модулю..");
-        String xmlText = sendToSoap(personDto);
-        log.info("SOAP-модуль успешно завершил конвертацию и вернул ответ!");
-        return new ResponseEntity<>(xmlText, HttpStatus.OK);
-    }
 
     @Override
     @Transactional
