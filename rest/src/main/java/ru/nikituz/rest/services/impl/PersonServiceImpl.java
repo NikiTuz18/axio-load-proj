@@ -7,6 +7,7 @@ import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class PersonServiceImpl implements PersonService {
 
     private final PersonRepository personRepository;
@@ -45,7 +47,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public ResponseEntity<String> ResponseFromPost(PersonDto personDto, BindingResult bindingResult) {
+    public ResponseEntity<String> responseFromPost(PersonDto personDto, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
             List<FieldError> errors = bindingResult.getFieldErrors();
@@ -55,14 +57,15 @@ public class PersonServiceImpl implements PersonService {
                         .append(error.getDefaultMessage())
                         .append(";\n");
             }
-
+            log.error("Ошибка в корректности данных JSON-модели.");
             throw new PersonCreateException(errorMessage.toString());
         }
 
         create(personDto);
-
+        log.info("Данные успешно добавлены в БД (json)!");
+        log.info("Обращение к SOAP-модулю..");
         String xmlText = sendToSoap(personDto);
-
+        log.info("SOAP-модуль успешно завершил конвертацию и вернул ответ!");
         return new ResponseEntity<>(xmlText, HttpStatus.OK);
     }
 
@@ -86,6 +89,7 @@ public class PersonServiceImpl implements PersonService {
 
     @ExceptionHandler
     private ResponseEntity<ErrorPersonResponseTransfer> handlePersonException(PersonCreateException exception){
+        log.error("Ошибка конвертации при вызове SOAP-модуля:" + exception.getMessage());
         return new ResponseEntity<>(
                 new ErrorPersonResponseTransfer(exception.getMessage()),
                 HttpStatus.BAD_REQUEST

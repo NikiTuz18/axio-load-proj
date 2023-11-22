@@ -6,6 +6,6 @@ import ru.nikituz.rest.dto.PersonDto;
 
 public interface PersonService {
     void create(PersonDto personDto);
-    ResponseEntity<String> ResponseFromPost(PersonDto personDto, BindingResult bindingResult);
+    ResponseEntity<String> responseFromPost(PersonDto personDto, BindingResult bindingResult);
     String sendToSoap(PersonDto personDto);
 }
