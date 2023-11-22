@@ -38,7 +38,7 @@ public class XmlConverterService {
             log.info("Конвертация прошла успешно!");
             return resultWriter.toString();
         } catch (IOException | TransformerException e) {
-            log.error("Произошла ошибка конвертации:", e);
+            log.error("Произошла ошибка конвертации: {}", e.getMessage() , e);
             throw new RuntimeException(e);
         }
     }
