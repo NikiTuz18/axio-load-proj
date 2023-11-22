@@ -99,4 +99,5 @@ SOAP сервис может принимать как модель так и с
 ## Результаты POST-запросов к приложению (uses Postman):
 ![image](https://github.com/NikiTuz18/axio-load-proj/assets/104133517/9dfe5def-e2dd-4cf3-b56e-9b1e340c7023)
 ![image](https://github.com/NikiTuz18/axio-load-proj/assets/104133517/83be1906-fa7c-400a-855d-16447356871c)
-![image](https://github.com/NikiTuz18/axio-load-proj/assets/104133517/25d2daf3-bb6d-4129-91d5-e85fc6450035)
+![image](https://github.com/NikiTuz18/axio-load-proj/assets/104133517/886f5546-b04b-4c7c-886c-39a3d0762645)
+
