@@ -14,7 +14,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import ru.nikituz.rest.models.enums.DocumentType;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 @Entity
 @Table(name = "document")
