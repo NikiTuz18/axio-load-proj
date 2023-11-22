@@ -83,6 +83,7 @@ SOAP сервис может принимать как модель так и с
     </person>
 
 ## Схема БД PostgreSQL:
+![image](https://github.com/NikiTuz18/axio-load-proj/assets/104133517/e71c69f2-69f3-4267-b0dd-d23618e7b2fd)
 
 ## Как развернуть и запустить:
 Сделай форк репозитория, скачай его. Перед тем, как запускать использовать приложение и вносить в него изменения, соверши следующие шаги:
@@ -96,3 +97,6 @@ SOAP сервис может принимать как модель так и с
    4. Запусти REST-модуль
 
 ## Результаты POST-запросов к приложению (use's Postman):
+![image](https://github.com/NikiTuz18/axio-load-proj/assets/104133517/9dfe5def-e2dd-4cf3-b56e-9b1e340c7023)
+![image](https://github.com/NikiTuz18/axio-load-proj/assets/104133517/83be1906-fa7c-400a-855d-16447356871c)
+![image](https://github.com/NikiTuz18/axio-load-proj/assets/104133517/25d2daf3-bb6d-4129-91d5-e85fc6450035)
