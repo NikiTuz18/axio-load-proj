@@ -1,5 +1,6 @@
 package ru.nikituz.soap.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.xml.transform.OutputKeys;
@@ -16,12 +17,15 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 @Service
+@Slf4j
 public class XmlConverterService {
     public String convert(String xml) {
+        log.info("Начало процесса конвертации..");
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
 
         try (InputStream converterScheme = getClass().getClassLoader().getResourceAsStream("static/converter.xsl");){
             Source xslSource = new StreamSource(converterScheme);
+
             Transformer transformer = transformerFactory.newTransformer(xslSource);
             transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
@@ -31,8 +35,10 @@ public class XmlConverterService {
             Source xmlSource = new StreamSource(new StringReader(xml));
             Writer resultWriter = new StringWriter();
             transformer.transform(xmlSource, new StreamResult(resultWriter));
+            log.info("Конвертация прошла успешно!");
             return resultWriter.toString();
         } catch (IOException | TransformerException e) {
+            log.error("Произошла ошибка конвертации:", e);
             throw new RuntimeException(e);
         }
     }

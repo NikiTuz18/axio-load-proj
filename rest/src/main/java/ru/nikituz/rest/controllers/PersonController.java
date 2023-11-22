@@ -2,6 +2,7 @@ package ru.nikituz.rest.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import ru.nikituz.rest.services.PersonService;
 @RestController
 @RequestMapping("/rest/persons")
 @RequiredArgsConstructor
+@Slf4j
 public class PersonController {
 
     private final PersonService personService;
@@ -22,6 +24,7 @@ public class PersonController {
     @PostMapping("/add")
     @ResponseBody
     public ResponseEntity<String> add(@RequestBody @Valid PersonDto personDto, BindingResult bindingResult){
-        return personService.ResponseFromPost(personDto, bindingResult);
+        log.info("Обращение к REST-сервису..");
+        return personService.responseFromPost(personDto, bindingResult);
     }
 }
