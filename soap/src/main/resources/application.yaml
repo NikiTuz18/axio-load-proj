@@ -1,2 +1,14 @@
 server:
   port: 9090
+
+logging:
+  level:
+    ru:
+      nikituz: INFO
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/soap/soap-logs.log
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
