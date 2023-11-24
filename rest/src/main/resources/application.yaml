@@ -4,10 +4,14 @@ spring:
     url: jdbc:postgresql://localhost:5432/load_proj_db
     username: postgres
     password: postgres
-  mvc:
-    hiddenmethod:
-      filter:
-        enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        current_session_context_class: thread
+
 server:
   port: 8080
 
